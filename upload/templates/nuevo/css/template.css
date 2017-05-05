@@ -47,15 +47,15 @@ div[id^="group-"]>div {
 }
 
 .group-name {
- color: #4CC383;
+
 }
 
 #surveydescription, .group-name {
-    color: #4CC383;
+    color: #2c3e50;
 }
 
 #main-row, #welcome-container {
-    background-color: #ffffff;
+    background-color: transparent;
 }
  /**
  * Navigator
@@ -893,7 +893,7 @@ body div.row .question-container {
 
 .answer-container, .question-help-container
 {
-    border-style: none;
+    border-style: solid;
 }
 
 .answer-container
@@ -913,7 +913,7 @@ body div.row .question-container {
 /** Header **/
 
 .question-title-container {
-    color: #4CC383;
+    color: white;
     padding: 2em 1em 1em 1em;
 }
 

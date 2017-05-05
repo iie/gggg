@@ -92,7 +92,7 @@ template {
   display: none;
 }
 a {
-  background-color: #ffffff;
+  background-color: transparent;
 }
 a:active,
 a:hover {
@@ -3096,10 +3096,8 @@ fieldset[disabled] a.btn {
 }
 .btn-default {
   color: #ffffff;
-  background-color: #4CC383;
-  border-color: #4CC383;
-  border-radius: 33px;
-  box-shadow: 0 3px #3A8F61;
+  background-color: #95a5a6;
+  border-color: #95a5a6;
 }
 .btn-default:focus,
 .btn-default.focus {
@@ -3109,10 +3107,8 @@ fieldset[disabled] a.btn {
 }
 .btn-default:hover {
   color: #ffffff;
-  background-color: #3A8F61;
-  border-color: #3A8F61;
-  border-radius: 33px;
-  box-shadow: 0 0px #3A8F61;
+  background-color: #798d8f;
+  border-color: #74898a;
 }
 .btn-default:active,
 .btn-default.active,
@@ -3157,10 +3153,8 @@ fieldset[disabled] .btn-default.focus {
 }
 .btn-primary {
   color: #ffffff;
-  background-color: #4CC383;
-  border-color: #4CC383;
-  box-shadow: 0 3px #3A8F61;
-  border-radius: 33px;
+  background-color: #2c3e50;
+  border-color: #2c3e50;
 }
 .btn-primary:focus,
 .btn-primary.focus {
@@ -3170,9 +3164,8 @@ fieldset[disabled] .btn-default.focus {
 }
 .btn-primary:hover {
   color: #ffffff;
-  background-color: #3A8F61;
-  border-color: #3A8F61;
-  box-shadow: 0 0px #3A8F61;
+  background-color: #1a242f;
+  border-color: #161f29;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -3481,7 +3474,7 @@ fieldset[disabled] .btn-link:focus {
   padding: 18px 27px;
   font-size: 19px;
   line-height: 1.3333333;
-  border-radius: 33px;
+  border-radius: 6px;
 }
 .btn-sm,
 .btn-group-sm > .btn {
@@ -4539,7 +4532,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #4CC383;
+  background-color: #2c3e50;
   border-color: transparent;
 }
 .navbar-default .navbar-brand {
@@ -4555,13 +4548,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav > li > a {
   color: #ffffff;
-  background-color:#18bc9c;
-  border-radius: 33px;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #ffffff;
-  background-color:#649b6b;
+  color: #18bc9c;
+  background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -5027,7 +5018,6 @@ a.badge:focus {
   border-radius: 6px;
   padding-left: 15px;
   padding-right: 15px;
-  color:#4CC383;
 }
 .jumbotron .container {
   max-width: 100%;
@@ -5037,7 +5027,6 @@ a.badge:focus {
     padding-top: 48px;
     padding-bottom: 48px;
   }
-  
   .container .jumbotron,
   .container-fluid .jumbotron {
     padding-left: 60px;
@@ -5177,7 +5166,7 @@ a.thumbnail.active {
   overflow: hidden;
   height: 21px;
   margin-bottom: 21px;
-  background-color: #3A8F61;
+  background-color: #ecf0f1;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -5189,9 +5178,9 @@ a.thumbnail.active {
   height: 100%;
   font-size: 13px;
   line-height: 21px;
-  color: #4CC383;
+  color: #ffffff;
   text-align: center;
-  background-color: #FFFFFF;
+  background-color: #2c3e50;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   -webkit-transition: width 0.6s ease;
@@ -6838,7 +6827,7 @@ button.close {
 }
 .text-danger,
 .text-danger:hover {
-  color: #f39c12;
+  color: #e74c3c;
 }
 .text-warning,
 .text-warning:hover {
@@ -6922,11 +6911,9 @@ table-bordered > tfoot > tr > td,
 }
 .form-control,
 input {
-  border-width: 0px;
-  
+  border-width: 2px;
   -webkit-box-shadow: none;
   box-shadow: none;
-  background-color:#ecf0f1
 }
 .form-control:focus,
 input:focus {
@@ -7074,7 +7061,7 @@ a.list-group-item-danger.active:focus {
  * Question design
  */
  body{
-     background-color: #ffffff;
+     background-color: #f6f6f6;
  }
 
  .answer-container, .question-help-container
@@ -7085,7 +7072,7 @@ a.list-group-item-danger.active:focus {
 
  /** Header **/
  .question-title-container, .questionvalidcontainer {
-     background-color: trasparent;
+     background-color: #233140;
  }
 
 
@@ -7108,21 +7095,3 @@ a.list-group-item-danger.active:focus {
  .input-error {
      border: 1px solid #E75041;
  }
- /*codigo martin*/
- #moveprevbtn{
-    color: #000000;
-    background-color: #ffffff;
-    border-color: #E4E4E4;
-    box-shadow: 0 3px #E4E4E4;
-    border-radius: 33px;
-     
-    /*display:none;*/
- }
- #moveprevbtn:hover{
-    background-color: #E4E4E4;
-    box-shadow: 0 0px #E4E4E4;
- }
-
-#question1.row{
-    background-color: transparent;
-}

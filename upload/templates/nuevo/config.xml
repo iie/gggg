@@ -4,6 +4,7 @@
     In future versions of LimeSurvey, it will be used to fill a template table,
     and to give user control on template configuration (like variables to use to render the questions, banners, background, etc.)
 -->
+
 <config>
     <!-- Those metadatas will be display in the template configuration page. They are not used for now. -->
     <metadatas>
@@ -16,7 +17,7 @@
         <license>GNU General Public License version 2 or later</license>
         <version>1.0</version>
         <description>Default LimeSurvey Template.</description>
-        <last_update>2017-05-05 19:35:00</last_update>
+        <last_update>2016-05-13 10:46:00</last_update>
     </metadatas>
 
     <!--
