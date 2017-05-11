@@ -3,7 +3,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>{SURVEYNAME}</title>
 <meta name="generator" content="LimeSurvey http://www.limesurvey.org" />
-
+<script type="text/javascript" src="{TEMPLATEURL}files/video.js"></script>
 <!-- The following line includes jquery-ui.css or jquery-ui-custom.css from template dir, template.css and needed specific css file for survey -->
 {TEMPLATECSS}
 
@@ -31,9 +31,9 @@
                     {PERCENTCOMPLETE}
                 </ul>
                 <ul class="nav navbar-nav navbar-right col-sm-6 col-md-6 col-lg-6">
-                    {SAVE_LINKS}
+                    <!----{SAVE_LINKS}
                     {CLEARALL_LINKS}
-                    {QUESTION_INDEX_MENU}
+                    {QUESTION_INDEX_MENU}---->
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/row-->
