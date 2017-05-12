@@ -266,7 +266,114 @@ $(document).ready(function()
         } 
 
     });
+    
 //martin video------------------------------------------------------------------------------------------------
+        //-------------------------------------------------------------------------------------------------------------
+    //--------------------------------Cambios al registro----------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------
+    $("#register_attribute_1").parent().parent().remove();
+    $(".register-form .container #limesurvey").prepend('<div id="frut" class="form-group col-sm-12"></div>');
+    $("#frut").append('<label for="register_attribute_1" class="control-label col-md-4"><span class="text-danger asterisk"></span>Rut:</label>');
+    $("#frut").append('<div class="col-sm-12 col-md-6"><input id="register_attribute_1" class="form-control input-sm" type="text" value="" name="register_attribute_1"></div>');
+    if ($("#frut").length) {
+        var token = localStorage.getItem("puc_rut");
+        $("#register_attribute_1").val(token);
+    }
+
+    function llenarselect_c(datos, elemento) {
+        $(elemento).empty();
+        $(elemento).append('<option value="" disabled selected>selecione...</option>');
+        $.each(datos, function(i, item) {
+            $(elemento).append('<option value="' + item + '">' + item + '</option>');
+        });
+    }
+
+    function llenarselect_e(datos, elemento1) {
+        $(elemento1).empty();
+        $(elemento1).append('<option value="" disabled selected>selecione....</option>');
+        $.each(datos, function(i, item) {
+            $(elemento1).append('<option value="' + item.valor + '">' + item.nombre + '</option>');
+        });
+    }
+
+
+    $("#register_attribute_1").rut();
+    $("#register_attribute_2").parent('div').html('<input id="register_attribute_2" type="radio" name="register_attribute_2" value="Municipal">Municipal<br><input id="register_attribute_2" type="radio" name="register_attribute_2" value="Particular subencionado">Particular subencionado<br>');
+    $("#register_attribute_4").parent('div').html('<input id="register_attribute_4" type="radio" name="register_attribute_4" value="Femenino">Femenino<br><input id="register_attribute_4" type="radio" name="register_attribute_4" value="Masculino">Masculino<br>');
+    $("#register_attribute_3").replaceWith('<select id="register_attribute_3" name ="register_attribute_3"></select>');
+
+    var attr5_nivel = $("#register_attribute_5");
+    var paretDivAttr5 = $("#register_attribute_5").parent('div');
+    $("#register_attribute_5").remove();
+
+    var checkNivel = '<input id="opt1" type="checkbox" name ="opt1" value="1-Ed. parvularia">Ed. parvularia<br>';
+    checkNivel += '<input id="opt2" type="checkbox" name ="opt2" value="2-1 a 6">1 a 6 <br>';
+    checkNivel += '<input id="opt3" type="checkbox" name ="opt3" value="3-7 a IV° medio">7 a IV° medio<br>';
+    checkNivel += attr5_nivel.get(0).outerHTML;
+    paretDivAttr5.html(checkNivel);
+    $("#register_attribute_5").hide();
+
+
+
+
+
+
+
+    //$("#register_attribute_5").parent('div').append('<input id="register_attribute_5" type="hidden" name ="register_attribute_5" >');
+
+    //$("#register_attribute_5").replaceWith('<select id="register_attribute_5" name ="register_attribute_5"></select>');
+    // validacion del submit 
+    $("#limesurvey").submit(function(event) {
+
+        var $da = $("#register_attribute_1").val();
+        //var $c1= $("#register_attribute_5").val();
+        var tmpstr = "";
+        for (i = 0; i < $da.length; i++)
+            if ($da.charAt(i) != ' ' && $da.charAt(i) != '.' && $da.charAt(i) != '-')
+                tmpstr = tmpstr + $da.charAt(i);
+
+
+        var texto = tmpstr;
+        var $de = $.validateRut(texto);
+
+        if ($de === false) {
+            alert("El rut " + $da + " es invalido ");
+            event.preventDefault();
+        }
+        if ($("#opt1").prop("checked") == true && $("#opt3").prop("checked") == true && $("#opt2").prop("checked") == true) {
+
+            //las tres opciones escojidas 
+            $("#register_attribute_5").val($("#opt1").val() + " ; " + $("#opt2").val() + " ; " + $("#opt3").val());
+
+        } else if ($("#opt2").prop("checked") == true) {
+            if ($("#opt1").prop("checked") == true) { //opcion 1 y 2    
+                $("#register_attribute_5").val($("#opt1").val() + " ; " + $("#opt2").val());
+            } else if ($("#opt3").prop("checked") == true) { //opcion 2 y 3           
+                $("#register_attribute_5").val($("#opt2").val() + " ; " + $("#opt3").val());
+            } else { //solo opcion 2
+                $("#register_attribute_5").val($("#opt2").val());
+            }
+        } else {
+            event.preventDefault();
+            window.location.replace("http://localhost/limesurvey/index.php"); //nesecita cambiar la dirrecion 
+        }
+    });
+
+
+    $.ajax({
+        url: "/limesurvey/ws/info_c.php", //nesecita cambiar la dirrecion 
+        type: "GET",
+        success: function(result) {
+            // result=JSON.parse(result);
+            llenarselect_e(result.re.region, "#register_attribute_3");
+        }
+
+    });
+
+
+    //--------------------------------------------------------------------------------------------------------
+    //-------------------------------------Fin de las modificacion del registro-------------------------------
+    //--------------------------------------------------------------------------------------------------------
 });
 
 
