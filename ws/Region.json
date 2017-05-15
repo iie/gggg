@@ -1,0 +1,77 @@
+{
+"region":[
+{
+
+"nombre":"XV Arica y Parinacota",
+"valor":"1"
+},{
+
+"nombre":"I Tarapacá",
+"valor":"2"
+
+},{
+
+"nombre":"II Antofagasta",
+"valor":"3"
+},{
+
+"nombre":"III Atacama",
+"valor":"4"
+
+},{
+
+"nombre":"IV Coquimbo",
+"valor":"5"
+
+},{
+
+"nombre":"Región Metropolitana",
+"valor":"6"
+
+},{
+
+"nombre":"V Valparaíso",
+"valor":"7"
+
+},{
+
+"nombre":"VI O'Higgins",
+"valor":"8"
+
+},{
+
+"nombre":"VII Maule",
+"valor":"9"
+
+},{
+
+"nombre":"VIII Biobío",
+"valor":"10"
+
+},{
+
+"nombre":"IX La Araucanía",
+"valor":"11"
+
+},{
+
+"nombre":"XIV Los Ríos",
+"valor":"12"
+
+},{
+
+"nombre":"X Los Lagos",
+"valor":"13"
+
+},{
+
+"nombre":"XI Aysén",
+"valor":"14"
+
+},{
+
+"nombre":"XII Magallanes y Antártica",
+"valor":"15"
+
+}]
+}
