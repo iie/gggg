@@ -1,2 +1,5 @@
 <!-- Survey Description survey.pstpl -->
 {CHECKJAVASCRIPT}
+<p id = "e">assaa</p>
+<a href="/limesurvey/index.php/"+{SID}+"/lang/es/token/"+{TOKEN} >pincha aqui</a>
+
