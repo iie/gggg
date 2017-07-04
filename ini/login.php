@@ -1,70 +1,82 @@
 <?php
 	require 'conet.php';
+
 	include ("C:/wamp64/www/limesurvey/src/org/jsonrpcphp/JsonRPCClient.php");
 	include ("C:/wamp64/www/limesurvey/src/org/jsonrpcphp/JsonRPCServer.php");
 
-	define( 'LS_BASEURL', 'http://localhost/limesurvey/index.php');  // adjust this one to your actual LimeSurvey URL
-	define( 'LS_USER', 'admin-martin' );
-	define( 'LS_PASSWORD', 'martin.martin' );
+	define( 'LS_BASEURL', 'http://localhost/limesurvey/index.php');  // aqui actual LimeSurvey URL
+	define( 'LS_USER', 'admin-martin' );// aqui actual LimeSurvey USER
+	define( 'LS_PASSWORD', 'martin.martin' );// aqui actual LimeSurvey PASSWORD
 	// instanciate a new client
 	$myJSONRPCClient = new \org\jsonrpcphp\JsonRPCClient( LS_BASEURL.'/admin/remotecontrol' );
 
 	// receive session key
 	$sessionKey= $myJSONRPCClient->get_session_key( LS_USER, LS_PASSWORD );	
-	//--------------------------requerido todo lo de arriba paracambiar los datos para el limesurvey-------------------------
-	$encuestas = $myJSONRPCClient->list_surveys( $sessionKey, null ); //lista encuestas 
-	$usersEncuesta=array();
-
-	for ($i=0; $i < count($encuestas) ; $i++) { 
-		$usersEncuesta[$i] = $myJSONRPCClient->list_participants($sessionKey, $encuestas[$i]["sid"],0,10,true,false);//retorna participantes en la encuesta
-	}
-
-	$usuario=array();
-
+	//--requerido todo lo de arriba paracambiar los datos para el limesurvey--
+	$encuestas = $myJSONRPCClient->list_surveys( $sessionKey, null ); //lista encuestas llena
+	//recupero encuestas activas
+	$id=0;
+	$encuestasActivate=array();
 	for ($i=0; $i < count($encuestas); $i++) { 
-		$usuario[$i]= $mysqli->query("SELECT attribute_1,token FROM lime_tokens_".$encuestas[$i]["sid"]." WHERE attribute_1 = '".$_POST['rut']."'");
+		if ($encuestas[$i]["active"]=='Y') {
+			$encuestasActivate[$id]=$encuestas[$i];
+			$id++;
+		}
 	}
-
+	$usersEncuesta=array();// usuarios por encuesta vacio
+	//llenamos lista usuarios-------------------------------------------
+	$listaattr= array('id', 'completed', 'participant_id', 'language string', 'usesleft', 'firstname', 'lastname', 'email', 'blacklisted', 'validfrom', 'start_date', 'sent', 'validuntil', 'remindersent', 'mpid', 'emailstatus', 'remindercount', 'attribute_1');//datos pedidos 
+	for ($i=0; $i < count($encuestasActivate) ; $i++) { 
+		$usersEncuesta[$i] = $myJSONRPCClient->list_participants($sessionKey, $encuestasActivate[$i]["sid"],0,1000,false,$listaattr);//retorna participantes en la encuesta
+	}
+	
+	
+	
+	//-----------------------------------------------------------------
+	$usuario=array();//lista datos usuarios 
+	
+	//consulto rut usuarios--------------------------------------------
+	for ($i=0; $i < count($encuestasActivate); $i++) { 
+		$usuario[$i]= $mysqli->query("SELECT attribute_1 , token , completed FROM lime_tokens_".$encuestasActivate[$i]["sid"]." WHERE attribute_1 = '".$_POST['rut']."'");
+	}
+	
+	//-----------------------------------------------------------------
+	//-----------------------------------------------------------------
+	//evaluo si existe-------------------------------------------------
 	$estado=false;
-	$n=0;
-	while ($estado==false) {
-		if(($usuario[$n]->num_rows==1)){
+	for ($i=0; $i < count($usuario); $i++) { 
+		if(($usuario[$i]->num_rows==1)){
 			$estado= true;		
 		}
 	}
 	$n=0;
-	if ($estado) {
+	//-----------------------------------------------------------------
+	if ($estado) {//si existe
 		$numtabla=0;
-		//busco en cual
+		//busco en cual existe-----------------------------------------
 		$n=0; 
-		while ($n<count($encuestas)) {
+		while ($n<count($encuestasActivate)) {
 			if (($usuario[$n]->num_rows==1)){
 				$numtabla=$n;
-				$n=4;
+				$n+=count($encuestasActivate);//es para salir del ciclo
 			}			
 			$n++;
 		}
+		//-------------------------------------------------------------
 		$datos= $usuario[$numtabla]->fetch_assoc();
-		$resultado = array('estado' => true,'texto'=>"/limesurvey/index.php/".$encuestas[$numtabla]["sid"]."/lang/es/token/".$datos['token']);
-		echo json_encode($resultado);
-	} else {
-		$cont=array();
-		for ($j=0; $j < 3; $j++) { 
-			$cont[$j] = count($usersEncuesta[$j]);//sacamos numero de participantes en la encuesta 
-		}
-		$iNumeroMenor = $cont[0];
-   		$iPosicion = 0;
-		for ($x=1; $x < count($cont); $x++) { 
-			if ($cont[$x]<$iNumeroMenor){
-				$iNumeroMenor = $cont[$x];
-				$iPosicion = $x;
-			}
-		}
-		$resultado = array('estado' => false,'texto'=>("/limesurvey/index.php/".$encuestas[$iPosicion]["sid"]."?lang=es"));
+		if ($datos['completed']=='N') {
+			$resultado = array('estado' => true,'texto'=>"/limesurvey/index.php/".$encuestasActivate[$numtabla]["sid"]."/lang/es/token/".$datos['token']);//aqui se arma la url de destino
 		
-		echo json_encode($resultado);
+		}else{
+			$resultado = array('estado' => false,'texto'=>"/limesurvey/ini/datos.php");//aqui se arma la url de destino
+		}
+		echo json_encode($resultado);//mado array como json
+		
+	} else {//si no existe
+		
+		$resultado = array('estado' => false,'texto'=>"/limesurvey/ini/datos.php");//aqui se arma la url de destino
+		
+		echo json_encode($resultado);//mado array como json
 	}
-	
-	
-	$mysqli->close();
+	$mysqli->close();//cierro MySQL
 ?>
