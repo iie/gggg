@@ -56,7 +56,7 @@ session_destroy();
 							
 							localStorage.setItem("puc_rut", $("#lorut").val());
 							//console.log(JSON.parse(data).texto);
-							location.href=(JSON.parse(data).texto);
+							alert(JSON.parse(data).texto);
 						}else{
 							localStorage.setItem("puc_rut", $("#lorut").val());
 

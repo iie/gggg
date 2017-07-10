@@ -68,13 +68,13 @@
 			$resultado = array('estado' => true,'texto'=>"/limesurvey/index.php/".$encuestasActivate[$numtabla]["sid"]."/lang/es/token/".$datos['token']);//aqui se arma la url de destino
 		
 		}else{
-			$resultado = array('estado' => false,'texto'=>"/limesurvey/ini/datos.php");//aqui se arma la url de destino
+			$resultado = array('estado' => false,'texto'=>"usted completo la encuesta.");//aqui se arma la url de destino
 		}
 		echo json_encode($resultado);//mado array como json
 		
 	} else {//si no existe
 		
-		$resultado = array('estado' => false,'texto'=>"/limesurvey/ini/datos.php");//aqui se arma la url de destino
+		$resultado = array('estado' => true,'texto'=>"/limesurvey/ini/datos.php");//aqui se arma la url de destino
 		
 		echo json_encode($resultado);//mado array como json
 	}

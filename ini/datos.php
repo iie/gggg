@@ -42,6 +42,13 @@
 
 
   </script>
+  <link rel="stylesheet" type="text/css" href="/encuesta/tmp/assets/99f0d59a/css/jquery-ui-custom.css">
+  <link rel="stylesheet" type="text/css" href="/encuesta/tmp/assets/99f0d59a/css/bootstrap-slider.css">
+  <link rel="stylesheet" type="text/css" href="/encuesta/tmp/assets/99f0d59a/css/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css">
+  <link rel="stylesheet" type="text/css" href="/encuesta/tmp/assets/99f0d59a/css/flat_and_modern.css">
+  <link rel="stylesheet" type="text/css" href="/encuesta/tmp/assets/99f0d59a/css/template.css">
+  <link rel="stylesheet" type="text/css" href="/encuesta/tmp/assets/e4ebeb6a/css/font-awesome.min.css">
+
  	</head>
  	<body>
  	<div class="main">
@@ -59,7 +66,31 @@
  			<label>apellido:</label>
  			<input type="text" id="apr" name="apellido" placeholder="perez" required ><br>
  			<label>rut:</label>
- 			<input type="text" id="ru" name="rut" placeholder="11111111-1" required ><br>
+      <input type="text" id="rut" name="rut" placeholder="11111111-1" required ><br>
+      <label>dependencia:</label>
+      <select type="text" id="est" name="dependencia" placeholder="municipal" required >
+        <option value="municipal">municipal</option>
+        <option value="particular">particular</option>
+        <option value="par.subencionado">par.subencionado</option>
+      </select><br>
+      <label>reguion:</label>
+      <select type="text" id="reg" name="reguion" placeholder="metropolitana" required>
+        <option value="Arica y Parinacota XV">Arica y Parinacota XV</option>
+        <option value="Tarapacá I">Tarapacá I</option>
+        <option value="Antofagasta II">Antofagasta II</option>
+        <option value="Atacama III">Atacama III</option>
+        <option value="Coquimbo IV">Coquimbo IV</option>
+        <option value="Valparaiso V">Valparaiso V</option>
+        <option value="Metropolitana de Santiago RM">Metropolitana de Santiago RM</option>
+        <option value="Libertador General Bernardo O\'Higgins VI">Libertador General Bernardo O'Higgins VI</option>
+        <option value="Maule VII">Maule VII</option>
+        <option value="Biobío VIII">Biobío VIII</option>
+        <option value="La Araucanía IX">La Araucanía IX</option>
+        <option value="Los Ríos XIV">Los Ríos XIV</option>
+        <option value="Los Lagos X">Los Lagos X</option>
+        <option value="Aisén del General Carlos Ibáñez del Campo XI">Aisén del General Carlos Ibáñez del Campo XI</option>
+        <option value="Magallanes y de la Antártica Chilena XII">Magallanes y de la Antártica Chilena XII</option>
+      </select><br>
  			<input type="submit" class="botonlg" value="registrar">		
  			</div>
  			<div id="salir" style="display:none">    
@@ -75,10 +106,10 @@
   		$("#form").submit(function( event ) {
   			event.preventDefault();
       		$.ajax({
-			url:'carga.php',
-			type:'POST',
-			data: $(this).serialize(),
-			success:function(data){
+			     url:'carga.php',
+			     type:'POST',
+			     data: $(this).serialize(),
+			     success:function(data){
 				if ((JSON.parse(data).estado == true)) {
 
 						window.location.href = (JSON.parse(data).txt);
